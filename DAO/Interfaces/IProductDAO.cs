@@ -4,6 +4,6 @@ namespace AluraMusicAPIRest.DAO.Interfaces
 {
     public interface IProductDAO
     {
-        public List<ProductModel> GetProdutosHttp();
+        public List<ProductModel> GetProdutos();
     }
 }

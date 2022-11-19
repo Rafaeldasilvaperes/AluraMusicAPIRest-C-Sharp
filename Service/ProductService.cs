@@ -9,15 +9,15 @@ namespace AluraMusicAPIRest.Service
     {
         private readonly IProductDAO _daoProduct;
 
-        public ProductService()
+        public ProductService(IProductDAO daoProduct)
         {
-            _daoProduct = new ProductDAO();
+            _daoProduct = daoProduct;
         }
       
         public List<ProductModel> GetProdutos()
         {
 
-            return _daoProduct.GetProdutosHttp() ?? new List<ProductModel>();
+            return _daoProduct.GetProdutos() ?? new List<ProductModel>();
         }
     }
     

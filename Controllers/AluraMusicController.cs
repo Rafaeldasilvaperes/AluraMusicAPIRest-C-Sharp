@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿
+using AluraMusicAPIRest.Models;
 using AluraMusicAPIRest.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AluraMusicAPIRest.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/v1/products")]
     public class AluraMusicController : ControllerBase
     {
         private readonly IProductService _serviceProduct;
@@ -16,12 +15,40 @@ namespace AluraMusicAPIRest.Controllers
             _serviceProduct = serviceProduct;
         }
 
+        // GET ALL: v1/products
         [HttpGet]
-        [Route("Index")]
+        [Route("")]
         public IActionResult Get()
         {
             return Ok(_serviceProduct.GetProdutos());
             
+        }
+
+        // GET ONE: v1/products/5
+        [HttpGet()]
+        [Route("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST ONE: v1/products/
+        [HttpPost]
+        [Route("")]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT ONE: api/products/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE ONE: api/products/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }
