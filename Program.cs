@@ -1,7 +1,7 @@
 
 using AluraMusicAPIRest.Service.Interfaces;
 using AluraMusicAPIRest.Service;
-using AluraMusicAPIRest.Data;
+using AluraMusicAPIRest.DataContext;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using AluraMusicAPIRest.DAO.Interfaces;
@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var ConnStringMySQL = builder.Configuration.GetConnectionString("ConnectionMySQL");
-builder.Services.AddDbContext<DbContext>(
+builder.Services.AddDbContext<ProductDbContext>(
     options =>
     {
         options.UseMySql(ConnStringMySQL, ServerVersion.Parse("8.0.31"));

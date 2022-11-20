@@ -7,10 +7,10 @@ namespace AluraMusicAPIRest.Controllers
 {
     [ApiController]
     [Route("/v1/products")]
-    public class ProductsController : ControllerBase
+    public class AluraMusicController : ControllerBase
     {
         private readonly IProductService _serviceProduct;
-        public ProductsController(IProductService serviceProduct)
+        public AluraMusicController(IProductService serviceProduct)
         {
             _serviceProduct = serviceProduct;
         }
@@ -18,9 +18,9 @@ namespace AluraMusicAPIRest.Controllers
         // GET ALL: v1/products
         [HttpGet]
         [Route("")]
-        public ActionResult<List<ProductModel>> Get()
+        public IActionResult Get()
         {
-            return Ok( _serviceProduct.GetProdutos());
+            return Ok(_serviceProduct.GetProdutos());
             
         }
 
