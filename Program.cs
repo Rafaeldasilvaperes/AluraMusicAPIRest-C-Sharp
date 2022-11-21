@@ -1,7 +1,7 @@
 
+global using AluraMusicAPIRest.DataContext;
 using AluraMusicAPIRest.Service.Interfaces;
 using AluraMusicAPIRest.Service;
-using AluraMusicAPIRest.DataContext;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using AluraMusicAPIRest.DAO.Interfaces;
@@ -33,7 +33,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI( options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = "v1/api-doc";
+    }
+        );
 }
 
 app.UseHttpsRedirection();

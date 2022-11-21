@@ -1,4 +1,4 @@
-﻿using AluraMusicAPIRest.DAO;
+﻿
 using AluraMusicAPIRest.DAO.Interfaces;
 using AluraMusicAPIRest.Models;
 using AluraMusicAPIRest.Service.Interfaces;
@@ -13,11 +13,19 @@ namespace AluraMusicAPIRest.Service
         {
             _daoProduct = daoProduct;
         }
-      
-        public List<ProductModel> GetProdutos()
+        
+        // GET ALL
+        public async Task<List<ProductModel>> GetProdutos()
         {
-
-            return _daoProduct.GetProdutos() ?? new List<ProductModel>();
+            try
+            {
+                return await _daoProduct.GetProdutos();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
     }
     

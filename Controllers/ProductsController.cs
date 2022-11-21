@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace AluraMusicAPIRest.Controllers
 {
     [ApiController]
-    [Route("/v1/products")]
-    public class AluraMusicController : ControllerBase
+    [Route("/v1/[Controller]")]
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService _serviceProduct;
-        public AluraMusicController(IProductService serviceProduct)
+        public ProductsController(IProductService serviceProduct)
         {
             _serviceProduct = serviceProduct;
         }
@@ -18,10 +18,13 @@ namespace AluraMusicAPIRest.Controllers
         // GET ALL: v1/products
         [HttpGet]
         [Route("")]
-        public IActionResult Get()
+        public async Task<ActionResult<List<ProductModel>>> Get()
         {
-            return Ok(_serviceProduct.GetProdutos());
-            
+
+            var products = await _serviceProduct.GetProdutos();
+
+            return products.Count == 0 ? NotFound() : Ok(products);
+
         }
 
         // GET ONE: v1/products/5
