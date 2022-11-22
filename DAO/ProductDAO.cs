@@ -17,5 +17,10 @@ namespace AluraMusicAPIRest.DAO
         {
             return await _productDbContext.Product.ToListAsync();
         }
+        public async Task<ProductModel> GetOneProduct(int id)
+        {
+            return await _productDbContext.Product.FindAsync(id);
+            
+        }
     }
 }

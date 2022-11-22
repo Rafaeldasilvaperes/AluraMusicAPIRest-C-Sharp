@@ -27,6 +27,18 @@ namespace AluraMusicAPIRest.Service
             }
             
         }
+
+        public async Task<ProductModel> GetOneProduct(int id)
+        {
+            try
+            {
+                return await _daoProduct.GetOneProduct(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
     
 }

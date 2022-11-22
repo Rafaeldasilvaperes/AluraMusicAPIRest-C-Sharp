@@ -23,16 +23,18 @@ namespace AluraMusicAPIRest.Controllers
 
             var products = await _serviceProduct.GetProdutos();
 
-            return products.Count == 0 ? NotFound() : Ok(products);
+            return products.Count == 0 ? NotFound("Products not found") : Ok(products);
 
         }
 
         // GET ONE: v1/products/5
         [HttpGet()]
         [Route("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<ProductModel>> Get(int id)
         {
-            return "value";
+            var singleProduct = await _serviceProduct.GetOneProduct(id);
+
+            return singleProduct == null ? BadRequest("Product not found") : Ok(singleProduct);
         }
 
         // POST ONE: v1/products/
@@ -42,9 +44,9 @@ namespace AluraMusicAPIRest.Controllers
         {
         }
 
-        // PUT ONE: api/products/5
+        // PATCH ONE: api/products/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Patch(int id, [FromBody] string value)
         {
         }
 

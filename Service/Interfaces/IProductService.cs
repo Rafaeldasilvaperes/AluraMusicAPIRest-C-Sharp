@@ -5,5 +5,6 @@ namespace AluraMusicAPIRest.Service.Interfaces
     public interface IProductService
     {
         public Task<List<ProductModel>> GetProdutos();
+        public Task<ProductModel> GetOneProduct(int id);
     }
 }
