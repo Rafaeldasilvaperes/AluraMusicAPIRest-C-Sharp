@@ -58,8 +58,11 @@ namespace AluraMusicAPIRest.Controllers
 
         // DELETE ONE: api/products/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<List<ProductModel>>> Delete(int id)
         {
+            var singleProduct = await _serviceProduct.DeleteOneProduct(id);
+
+            return Ok(singleProduct);
         }
     }
 }

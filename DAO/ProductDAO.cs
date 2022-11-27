@@ -34,7 +34,12 @@ namespace AluraMusicAPIRest.DAO
         public async Task PutOneProduct(ProductModel product)
         {
             await _productDbContext.SaveChangesAsync();
-           
+        }
+        // DELETE ONE
+        public async Task<int> DeleteOneProduct(ProductModel product)
+        {
+            _productDbContext.Product.Remove(product);
+            return await _productDbContext.SaveChangesAsync();
         }
     }
 }

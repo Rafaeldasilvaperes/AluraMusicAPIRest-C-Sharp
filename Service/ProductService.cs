@@ -53,7 +53,8 @@ namespace AluraMusicAPIRest.Service
                 if (productToBePosted > 0)
                 {
                     return productsWithNewProduct;
-                }else
+                }
+                else
                 {
                     throw new Exception();
                 }
@@ -87,6 +88,31 @@ namespace AluraMusicAPIRest.Service
                 await _daoProduct.PutOneProduct(productWithThisId);
 
                 return productWithThisId;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<List<ProductModel>> DeleteOneProduct(int id)
+        {
+            try
+            {
+                
+                var productExists = await _daoProduct.GetOneProduct(id);
+                if (productExists is not null)
+                {
+                    await _daoProduct.DeleteOneProduct(productExists);
+                    var productsWithNewProduct = await _daoProduct.GetProdutos();
+                    return productsWithNewProduct;
+
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                
             }
             catch (Exception)
             {
