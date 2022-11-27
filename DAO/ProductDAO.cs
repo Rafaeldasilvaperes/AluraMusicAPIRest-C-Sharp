@@ -12,15 +12,29 @@ namespace AluraMusicAPIRest.DAO
         {
             _productDbContext = productDbContext;
         }
-
+        // GET ALL
         public async Task<List<ProductModel>> GetProdutos()
         {
             return await _productDbContext.Product.ToListAsync();
         }
+        // GET ONE BY ID
         public async Task<ProductModel> GetOneProduct(int id)
         {
             return await _productDbContext.Product.FindAsync(id);
             
+        }
+        // POST ONE
+        public async Task<int> PostOneProduct(ProductModel product)
+        {
+            _productDbContext.Product.Add(product);
+            return await _productDbContext.SaveChangesAsync();
+            
+        }
+        // EDIT ONE
+        public async Task PutOneProduct(ProductModel product)
+        {
+            await _productDbContext.SaveChangesAsync();
+           
         }
     }
 }

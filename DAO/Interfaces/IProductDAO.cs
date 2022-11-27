@@ -6,6 +6,8 @@ namespace AluraMusicAPIRest.DAO.Interfaces
     {
         public Task<List<ProductModel>> GetProdutos();
         public Task<ProductModel> GetOneProduct(int id);
+        public Task<int> PostOneProduct(ProductModel product);
+        public Task PutOneProduct(ProductModel product);
     }
     
 }

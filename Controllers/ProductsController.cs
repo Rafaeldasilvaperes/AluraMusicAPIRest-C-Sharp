@@ -40,14 +40,20 @@ namespace AluraMusicAPIRest.Controllers
         // POST ONE: v1/products/
         [HttpPost]
         [Route("")]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<List<ProductModel>>> Post([FromBody] ProductModel product)
         {
+            var productToBePosted = await _serviceProduct.PostOneProduct(product);
+            
+            return Ok(productToBePosted);
         }
 
-        // PATCH ONE: api/products/5
+        // PUT ONE: api/products/5
         [HttpPut("{id}")]
-        public void Patch(int id, [FromBody] string value)
+        public async Task<ActionResult<List<ProductModel>>> Put(int id, [FromBody] ProductModel product)
         {
+            var productToBeEdited = await _serviceProduct.PutOneProduct(id, product);
+   
+            return productToBeEdited != null ? Ok(productToBeEdited) : BadRequest();
         }
 
         // DELETE ONE: api/products/5
