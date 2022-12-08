@@ -17,6 +17,12 @@ builder.Services.AddDbContext<ProductDbContext>(
         options.UseMySql(ConnStringMySQL, ServerVersion.Parse("8.0.31"));
     });
 
+// CORS
+builder.Services.AddCors(policy => policy.AddPolicy("corspolicy", build =>
+{
+    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -40,6 +46,9 @@ if (app.Environment.IsDevelopment())
     }
         );
 }
+
+
+app.UseCors("corspolicy");
 
 app.UseHttpsRedirection();
 

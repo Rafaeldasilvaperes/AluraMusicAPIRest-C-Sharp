@@ -4,7 +4,9 @@ using AluraMusicAPIRest.Models;
 using AluraMusicAPIRest.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Buffers.Text;
 using System.Diagnostics;
+using System.Text;
 
 namespace AluraMusicAPIRest.Service
 {
@@ -22,6 +24,7 @@ namespace AluraMusicAPIRest.Service
         {
             try
             {
+            
                 return await _daoProduct.GetProdutos();
             }
             catch (Exception)
@@ -36,6 +39,7 @@ namespace AluraMusicAPIRest.Service
             try
             {
                 return await _daoProduct.GetOneProduct(id);
+            
             }
             catch (Exception)
             {
@@ -48,6 +52,7 @@ namespace AluraMusicAPIRest.Service
             try
             {
 
+               
                 var productToBePosted = await _daoProduct.PostOneProduct(product);
                 var productsWithNewProduct = await _daoProduct.GetProdutos();
                 if (productToBePosted > 0)

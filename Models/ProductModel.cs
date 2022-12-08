@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 
 namespace AluraMusicAPIRest.Models
 {
@@ -17,6 +18,6 @@ namespace AluraMusicAPIRest.Models
         [Required]
         public string? productType { get; set; }
         [Required]
-        public string? productImage { get; set; }
+        public byte[]? productImage { get; set; }
     }
 }

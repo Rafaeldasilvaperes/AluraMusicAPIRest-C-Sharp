@@ -1,10 +1,14 @@
 ﻿
 using AluraMusicAPIRest.Models;
 using AluraMusicAPIRest.Service.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace AluraMusicAPIRest.Controllers
 {
+    
+    
     [ApiController]
     [Route("/v1/[Controller]")]
     public class ProductsController : ControllerBase
@@ -16,6 +20,7 @@ namespace AluraMusicAPIRest.Controllers
         }
 
         // GET ALL: v1/products
+        
         [HttpGet]
         [Route("")]
         public async Task<ActionResult<List<ProductModel>>> Get()
